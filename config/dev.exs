@@ -6,6 +6,7 @@ config :ukio, Ukio.Repo,
   password: "ukio_code_test",
   hostname: "localhost",
   database: "ukio_code_test",
+  port: 4321,
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

@@ -10,6 +10,7 @@ config :ukio, Ukio.Repo,
   password: "ukio_code_test",
   hostname: "localhost",
   database: "ukio_test#{System.get_env("MIX_TEST_PARTITION")}",
+  port: 4321,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
