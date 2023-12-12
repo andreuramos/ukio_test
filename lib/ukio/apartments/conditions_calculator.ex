@@ -7,7 +7,7 @@ defmodule Ukio.Apartments.ConditionsCalculator do
             "Mars" ->
                 %{
                     utilities: calculate_mars_utilities(apartment),
-                    deposit: 100_000,
+                    deposit: calculate_mars_deposit(apartment),
                 }
             _ ->
                 %{
@@ -21,5 +21,9 @@ defmodule Ukio.Apartments.ConditionsCalculator do
         utilities = apartment.square_meters * @mars_utility_square_meters_rate
 
         utilities
+    end
+
+    defp calculate_mars_deposit(apartment) do
+        apartment.monthly_price
     end
 end 
