@@ -7,6 +7,7 @@ defmodule Ukio.ApartmentsTest do
     alias Ukio.Apartments.Apartment
 
     import Ukio.ApartmentsFixtures
+    alias Ukio.Bookings.Handlers.BookingCreator
 
     @invalid_attrs %{
       address: nil,
@@ -83,6 +84,23 @@ defmodule Ukio.ApartmentsTest do
     test "change_apartment/1 returns a apartment changeset" do
       apartment = apartment_fixture()
       assert %Ecto.Changeset{} = Apartments.change_apartment(apartment)
+    end
+
+    test "is_available/3 with available dates returns available" do
+      apartment = apartment_fixture()
+      assert {:ok, :available} = Apartments.is_available(apartment.id, ~D"2023-12-05", ~D"2023-12-06")
+    end
+
+    test "is_available/3 with unavailable dates returns unavailable" do
+      apartment = apartment_fixture()
+      booking_params = %{
+        "check_in" => ~D"2023-12-10",
+        "check_out" => ~D"2023-12-11",
+        "apartment_id" => apartment.id
+      }
+      BookingCreator.create(booking_params)
+
+      assert {:error, :unavailable} = Apartments.is_available(apartment.id, ~D"2023-12-10", ~D"2023-12-11")
     end
   end
 

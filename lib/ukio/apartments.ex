@@ -105,6 +105,26 @@ defmodule Ukio.Apartments do
   alias Ukio.Apartments.Booking
 
   @doc """
+  Checks if apartment is available for the given dates
+  """
+  def is_available(apartment_id, check_in, check_out) do
+    query = from b in Booking,
+      where: b.apartment_id == ^apartment_id,
+      where: ((b.check_in <= ^check_in and b.check_out > ^check_in) or
+             (b.check_in < ^check_out and b.check_out >= ^check_out) or
+             (b.check_in >= ^check_in and b.check_out <= ^check_out)),
+      select: b.id
+    
+    bookings = Repo.all(query)
+    if Enum.empty?(bookings) do
+      {:ok, :available}
+    else
+      {:error, :unavailable}
+    end
+    
+  end
+
+  @doc """
   Returns the list of bookings.
 
   ## Examples
