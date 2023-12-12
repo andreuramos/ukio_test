@@ -1,5 +1,6 @@
 defmodule Ukio.Bookings.Handlers.BookingCreator do
   alias Ukio.Apartments
+  alias Ukio.Apartments.ConditionsCalculator
 
   def create(
         %{"check_in" => check_in, "check_out" => check_out, "apartment_id" => apartment_id}
@@ -16,13 +17,14 @@ defmodule Ukio.Bookings.Handlers.BookingCreator do
   end
 
   defp generate_booking_data(apartment, check_in, check_out) do
+    conditions = ConditionsCalculator.calculate(apartment)
     %{
       apartment_id: apartment.id,
       check_in: check_in,
       check_out: check_out,
       monthly_rent: apartment.monthly_price,
-      utilities: 20_000,
-      deposit: 100_000
+      utilities: conditions.utilities,
+      deposit: conditions.deposit
     }
   end
 end
