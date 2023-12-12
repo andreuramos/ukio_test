@@ -14,7 +14,8 @@ defmodule Ukio.ApartmentsTest do
       monthly_price: nil,
       name: nil,
       square_meters: nil,
-      zip_code: nil
+      zip_code: nil,
+      market: nil,
     }
 
     test "list_apartments/0 returns all apartments" do
@@ -33,7 +34,8 @@ defmodule Ukio.ApartmentsTest do
         monthly_price: 42,
         name: "some name",
         square_meters: 42,
-        zip_code: "some zip_code"
+        zip_code: "some zip_code",
+        market: "earth",
       }
 
       assert {:ok, %Apartment{} = apartment} = Apartments.create_apartment(valid_attrs)
@@ -42,6 +44,7 @@ defmodule Ukio.ApartmentsTest do
       assert apartment.name == "some name"
       assert apartment.square_meters == 42
       assert apartment.zip_code == "some zip_code"
+      assert apartment.market == "earth"
     end
 
     test "create_apartment/1 with invalid data returns error changeset" do
@@ -56,7 +59,8 @@ defmodule Ukio.ApartmentsTest do
         monthly_price: 43,
         name: "some updated name",
         square_meters: 43,
-        zip_code: "some updated zip_code"
+        zip_code: "some updated zip_code",
+        market: "mars",
       }
 
       assert {:ok, %Apartment{} = apartment} =
@@ -67,6 +71,7 @@ defmodule Ukio.ApartmentsTest do
       assert apartment.name == "some updated name"
       assert apartment.square_meters == 43
       assert apartment.zip_code == "some updated zip_code"
+      assert apartment.market == "mars"
     end
 
     test "update_apartment/2 with invalid data returns error changeset" do
