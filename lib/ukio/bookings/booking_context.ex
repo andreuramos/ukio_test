@@ -6,7 +6,7 @@ defmodule Ukio.Bookings.BookingContext do
   import Ecto.Query, warn: false
   alias Ukio.Repo
 
-  alias Ukio.Apartments.Booking
+  alias Ukio.Bookings.Booking
 
   @doc """
   Returns the list of bookings.

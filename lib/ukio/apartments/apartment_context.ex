@@ -7,6 +7,7 @@ defmodule Ukio.Apartments.ApartmentContext do
   alias Ukio.Repo
 
   alias Ukio.Apartments.Apartment
+  alias Ukio.Bookings.Booking
 
   @doc """
   Returns the list of apartments.
@@ -101,8 +102,6 @@ defmodule Ukio.Apartments.ApartmentContext do
   def change_apartment(%Apartment{} = apartment, attrs \\ %{}) do
     Apartment.changeset(apartment, attrs)
   end
-
-  alias Ukio.Apartments.Booking
 
   @doc """
   Checks if apartment is available for the given dates

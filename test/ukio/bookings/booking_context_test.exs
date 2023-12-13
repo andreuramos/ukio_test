@@ -4,7 +4,7 @@ defmodule Ukio.Bookings.BookingContextTest do
     import Ukio.ApartmentsFixtures
 
     describe "bookings" do
-        alias Ukio.Apartments.Booking
+        alias Ukio.Bookings.Booking
     
         import Ukio.ApartmentsFixtures
     

@@ -2,7 +2,7 @@ defmodule UkioWeb.BookingController do
   use UkioWeb, :controller
 
   alias Ukio.Apartments
-  alias Ukio.Apartments.Booking
+  alias Ukio.Bookings.Booking
   alias Ukio.Bookings.BookingContext
   alias Ukio.Bookings.Handlers.BookingCreator
 
