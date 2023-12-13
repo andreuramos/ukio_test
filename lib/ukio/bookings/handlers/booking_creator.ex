@@ -1,5 +1,6 @@
 defmodule Ukio.Bookings.Handlers.BookingCreator do
   alias Ukio.Apartments
+  alias Ukio.Bookings.BookingContext
   alias Ukio.Apartments.ConditionsCalculator
 
   def create(
@@ -9,7 +10,7 @@ defmodule Ukio.Bookings.Handlers.BookingCreator do
          b <- generate_booking_data(a, check_in, check_out) do
       case Apartments.is_available(apartment_id, check_in, check_out) do
         {:ok, :available} ->
-          Apartments.create_booking(b)
+          BookingContext.create_booking(b)
         {:error, :unavailable} -> 
           {:error, :unavailable}
       end

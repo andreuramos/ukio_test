@@ -39,7 +39,7 @@ defmodule Ukio.ApartmentsFixtures do
         monthly_rent: apartment.monthly_price,
         utilities: 20000
       })
-      |> Ukio.Apartments.create_booking()
+      |> Ukio.Bookings.BookingContext.create_booking()
 
     booking
   end
