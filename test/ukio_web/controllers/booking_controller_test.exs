@@ -47,9 +47,4 @@ defmodule UkioWeb.BookingControllerTest do
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
-
-  defp create_booking(_) do
-    booking = booking_fixture()
-    %{booking: booking}
-  end
 end
