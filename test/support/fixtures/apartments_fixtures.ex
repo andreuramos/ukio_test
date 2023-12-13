@@ -18,7 +18,7 @@ defmodule Ukio.ApartmentsFixtures do
         zip_code: "some zip_code",
         market: "earth"
       })
-      |> Ukio.Apartments.create_apartment()
+      |> Ukio.Apartments.ApartmentContext.create_apartment()
 
     apartment
   end
